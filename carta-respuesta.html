@@ -655,17 +655,31 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
     width: 215.9mm;
   }
 
-  /* ── COVER: página 1, sangría completa, salto de página al terminar ── */
+  /* ── COVER: llena la página completa (279.4mm = letter), flex columna ── */
   .cover {
-    padding: 18mm 20mm 14mm 20mm !important;
+    height: 279.4mm !important;
+    padding: 18mm 20mm 16mm 20mm !important;
     border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
     break-after: page;
   }
-  .cover-inner { max-width: 100% !important; padding: 0 !important; }
-  .cover-title  { font-size: 1.6rem !important; }
-  .cover-subtitle { font-size: .85rem !important; margin-bottom: 1.2rem !important; }
-  .cover-meta { grid-template-columns: repeat(4, 1fr) !important; gap: .6rem !important; }
-  .cover-meta-item { padding: .6rem .8rem !important; }
+  .cover-inner {
+    max-width: 100% !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+  }
+  .cover-title    { font-size: 1.6rem !important; }
+  .cover-subtitle { font-size: .85rem !important; margin-bottom: 1.5rem !important; }
+  /* Meta cards empujadas al fondo de la portada */
+  .cover-meta {
+    margin-top: auto !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: .7rem !important;
+  }
+  .cover-meta-item { padding: .7rem .9rem !important; }
 
   /* ── LETTER HEADER: márgenes consistentes con el cuerpo ── */
   .letter-header {
@@ -698,14 +712,18 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   .section { margin-bottom: 1.5rem; }
 
   /* ── SALTOS DE PÁGINA FORZADOS ── */
-  /* Página 2 empieza con: letter-header + intro + Sección I + Sección II  */
-  /* Página 3: Sección III (Respuesta técnica — es muy larga)               */
-  #respuesta   { break-before: page; }
-  /* Página 4: Sección IV (Protocolo)                                       */
-  #protocolo   { break-before: page; }
-  /* Página 5: Sección V + VI juntas (compromisos + garantía)               */
-  #compromisos { break-before: page; }
-  /* Página 6: Firmas + Anexos                                              */
+  /*
+   * Pág 2: letter-header + intro + Sección I (Posición)
+   * Pág 3: Sección II (Estado contractual) — tabla larga, página completa
+   * Pág 4: Sección III (Respuesta técnica — muy larga, puede ocupar 2 págs)
+   * Pág 5+: Sección IV (Protocolo) + callouts que fluyen a Sección V
+   * Sección V + VI fluyen naturalmente después de los callouts del IV
+   * Última: Firmas + Anexos
+   */
+  #contractual { break-before: page; }   /* Sec II sola — la tabla es larga  */
+  #respuesta   { break-before: page; }   /* Sec III inicia página fresca      */
+  #protocolo   { break-before: page; }   /* Sec IV inicia página fresca       */
+  /* #compromisos: SIN break-before — fluye tras los callouts de Sec IV      */
   .signatures-section { break-before: page; padding-top: 8mm; }
 
   .shimmer { margin: .7rem 0; height: 1px; }
