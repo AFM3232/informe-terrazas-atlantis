@@ -622,24 +622,24 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
 
 /* ─── PRINT / PDF ─── */
 @media print {
-  /*
-   * Primera página (portada): sin márgenes — el cover azul llena toda la hoja.
-   * Páginas interiores: 14mm arriba/abajo, 20mm lados — idéntico a un Word estándar.
-   */
-  @page           { size: letter portrait; margin: 14mm 20mm 12mm 20mm; }
-  @page :first    { margin: 0; }
+  /* Portada sin márgenes; todas las demás páginas con márgenes de Word */
+  @page         { size: letter portrait; margin: 20mm 20mm 18mm 20mm; }
+  @page :first  { margin: 0; }
 
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .blob, .nav, .print-btn { display: none !important; }
 
   body {
-    font-size: 9.5pt;
+    font-size: 10pt;
+    line-height: 1.65;
     background: #fff !important;
-    color: #0D1B2E !important;
+    color: #111827 !important;
     margin: 0; padding: 0; width: 100%;
   }
 
-  /* ── COVER: ocupa exactamente la primera página completa ── */
+  /* ════════════════════════════════
+     PORTADA — sin cambios visuales
+  ════════════════════════════════ */
   .cover {
     height: 279.4mm !important;
     padding: 18mm 20mm 16mm 20mm !important;
@@ -674,45 +674,151 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   .cover-lf-value    { font-size: 8pt !important; }
   .cover-subject-text { font-size: 8.5pt !important; }
 
-  /* ── CONTENIDO: el @page ya provee los márgenes, sólo padding vertical ── */
+  /* ════════════════════════════════
+     CUERPO — aspecto documento Word
+  ════════════════════════════════ */
+
+  /* @page provee los márgenes: padding 0 en contenedores */
   .main-content {
-    padding: 2mm 0 8mm 0 !important;
+    padding: 0 !important;
     max-width: 100% !important;
   }
 
-  /* ── TABLAS: paginan fila a fila (como Word), sin borde redondeado ── */
+  /* Párrafo de intro */
+  .main-content > .reveal > p {
+    font-size: 9.5pt !important;
+    line-height: 1.7 !important;
+    color: #374151 !important;
+  }
+
+  /* Encabezados de sección */
+  .section-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: .6rem !important;
+    padding-bottom: .5rem !important;
+    margin-bottom: 1rem !important;
+    border-bottom: 1.5px solid #d1d9e6 !important;
+    break-after: avoid; page-break-after: avoid;
+  }
+  .section-num {
+    font-size: 7pt !important;
+    border-radius: 4px !important;
+    padding: .15rem .45rem !important;
+    background: rgba(249,115,22,.10) !important;
+    color: #c05000 !important;
+    border: 1px solid rgba(249,115,22,.28) !important;
+  }
+  .section-title {
+    font-size: 11.5pt !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+  }
+
+  /* Caja de resumen azul */
+  .content-resumen {
+    background: rgba(37,99,235,.05) !important;
+    border-left: 3px solid #2563eb !important;
+    border-radius: 0 !important;
+    padding: .65rem 1rem !important;
+    font-size: 9pt !important;
+    line-height: 1.7 !important;
+    margin-bottom: 1rem !important;
+    color: #1e3a6e !important;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+
+  /* Findings — borde izquierdo de color, fondo casi blanco */
+  .finding {
+    border-radius: 0 !important;
+    padding: .65rem .9rem !important;
+    margin-bottom: .55rem;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .finding--ok      { background: rgba(22,163,74,.04)  !important; border-left: 3px solid #16a34a !important; }
+  .finding--warning { background: rgba(234,88,12,.04)  !important; border-left: 3px solid #ea580c !important; }
+  .finding--info    { background: rgba(37,99,235,.04)  !important; border-left: 3px solid #2563eb !important; }
+  .finding-num {
+    width: 22px !important; height: 22px !important;
+    font-size: 7pt !important;
+  }
+  .finding-body h4 { font-size: 9.5pt !important; margin-bottom: .2rem !important; color: #111827 !important; }
+  .finding-body p  { font-size: 8.5pt !important; line-height: 1.65 !important; color: #374151 !important; }
+
+  /* Callouts */
+  .callout {
+    border-radius: 0 !important;
+    padding: .6rem .9rem !important;
+    margin: .8rem 0 !important;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .callout p { font-size: 8.5pt !important; line-height: 1.65 !important; color: #374151 !important; }
+
+  /* Tablas — estilo documento, sin decoración web */
   .table-wrap {
     border-radius: 0 !important;
     overflow: visible !important;
     box-shadow: none !important;
-    border: 1px solid rgba(13,27,46,.18) !important;
+    border: 1px solid #c8d4e0 !important;
     margin: .9rem 0 !important;
   }
-  thead { display: table-header-group; } /* repite cabecera en cada página */
-
-  /* ── BLOQUES PEQUEÑOS: no cortar a la mitad ── */
-  .finding       { break-inside: avoid; page-break-inside: avoid; margin-bottom: .5rem; }
-  .callout       { break-inside: avoid; page-break-inside: avoid; margin: 3mm 0; }
-  .content-resumen { break-inside: avoid; page-break-inside: avoid; }
-  .guarantee-box   { break-inside: avoid; page-break-inside: avoid; }
-  .sig-block       { break-inside: avoid; page-break-inside: avoid; }
-  .guarantee-item  { break-inside: avoid; page-break-inside: avoid; }
-
-  p { orphans: 3; widows: 3; }
-  .section-header { break-after: avoid; page-break-after: avoid; }
-  tr { break-inside: avoid; page-break-inside: avoid; }
-  .section { margin-bottom: 1.5rem; }
-
-  /* ── SALTO ÚNICO: firmas en página nueva ── */
-  .signatures-section { break-before: page; }
-
-  .shimmer { margin: .6rem 0; height: 1px; }
-
-  .report-footer {
-    padding: 5mm 0 !important;
-    break-before: avoid;
+  thead { background: #f0f4fb !important; display: table-header-group; }
+  th {
+    font-size: 7pt !important;
+    padding: .5rem .8rem !important;
+    color: #3a5270 !important;
+    border-bottom: 1.5px solid #c8d4e0 !important;
+    white-space: normal !important;
   }
+  td {
+    font-size: 8.5pt !important;
+    padding: .55rem .8rem !important;
+    color: #374151 !important;
+    border-top: 1px solid #e5eaf2 !important;
+    line-height: 1.55 !important;
+  }
+  td strong { color: #111827 !important; }
+  td.mono   { font-size: 8pt !important; }
+  tr { break-inside: avoid; page-break-inside: avoid; }
+  tr:hover td { background: transparent !important; }
 
+  /* Caja de garantía */
+  .guarantee-box {
+    background: #1a2e4a !important;
+    border-radius: 0 !important;
+    padding: 1.2rem 1.5rem !important;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .guarantee-box h3 { font-size: 10pt !important; color: #fff !important; }
+  .guarantee-grid   { grid-template-columns: 1fr 1fr !important; gap: .8rem !important; }
+  .guarantee-item {
+    background: rgba(255,255,255,.07) !important;
+    border-radius: 0 !important;
+    border: 1px solid rgba(255,255,255,.15) !important;
+    padding: .7rem .9rem !important;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .gi-label { font-size: 6.5pt !important; color: rgba(255,255,255,.5) !important; }
+  .gi-value { font-size: 8pt !important; line-height: 1.55 !important; color: rgba(255,255,255,.87) !important; }
+
+  /* Firmas */
+  .signatures-section {
+    break-before: page;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    border-top: none !important;
+  }
+  .sig-intro { font-size: 9pt !important; color: #374151 !important; margin-bottom: 2rem !important; }
+  .sig-grid  { grid-template-columns: 1fr 1fr !important; gap: 3rem !important; }
+  .sig-block { break-inside: avoid; page-break-inside: avoid; }
+  .sig-name  { font-size: 9pt !important; }
+  .sig-role  { font-size: 7.5pt !important; }
+
+  /* Otros */
+  p { orphans: 3; widows: 3; }
+  .section { margin-bottom: 1.8rem; }
+  .shimmer { margin: .6rem 0 !important; height: 1px !important; background: #d1d9e6 !important; opacity: 1 !important; }
+  .report-footer { padding: 5mm 0 !important; break-before: avoid; }
   .reveal { opacity: 1 !important; transform: none !important; }
 }
 </style>
