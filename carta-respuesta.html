@@ -623,28 +623,23 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
 /* ─── PRINT / PDF ─── */
 @media print {
   /*
-   * @page margin = 0 → el cover azul llena el ancho A4 sin bordes blancos.
-   * Todos los márgenes se controlan con padding interno en cada bloque.
+   * Primera página (portada): sin márgenes — el cover azul llena toda la hoja.
+   * Páginas interiores: 14mm arriba/abajo, 20mm lados — idéntico a un Word estándar.
    */
-  @page {
-    size: letter portrait;
-    margin: 0;
-  }
+  @page           { size: letter portrait; margin: 14mm 20mm 12mm 20mm; }
+  @page :first    { margin: 0; }
 
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
   .blob, .nav, .print-btn { display: none !important; }
 
   body {
     font-size: 9.5pt;
     background: #fff !important;
     color: #0D1B2E !important;
-    margin: 0;
-    padding: 0;
-    width: 215.9mm;
+    margin: 0; padding: 0; width: 100%;
   }
 
-  /* ── COVER: llena la página completa (279.4mm = letter), flex columna ── */
+  /* ── COVER: ocupa exactamente la primera página completa ── */
   .cover {
     height: 279.4mm !important;
     padding: 18mm 20mm 16mm 20mm !important;
@@ -652,92 +647,69 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
     display: flex !important;
     flex-direction: column !important;
     break-after: page;
+    margin: 0 !important;
   }
   .cover-inner {
-    max-width: 100% !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    flex: 1 !important;
+    max-width: 100% !important; padding: 0 !important;
+    display: flex !important; flex-direction: column !important;
+    align-items: flex-start !important; flex: 1 !important;
   }
-  /* Logo: tamaño controlado, sin stretch del flexbox */
   .cover img {
-    height: 38pt !important;
-    width: auto !important;
-    max-width: 65mm !important;
-    align-self: flex-start !important;
+    height: 38pt !important; width: auto !important;
+    max-width: 65mm !important; align-self: flex-start !important;
   }
   .cover-title    { font-size: 1.6rem !important; }
-  .cover-subtitle { font-size: .85rem !important; margin-bottom: 1.5rem !important; }
-  /* Meta cards empujadas al fondo de la portada */
+  .cover-subtitle { font-size: .85rem !important; margin-bottom: 1.2rem !important; }
   .cover-meta {
     margin-top: auto !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: .7rem !important;
+    gap: .6rem !important;
   }
-  .cover-meta-item { padding: .7rem .9rem !important; }
-
-  /* ── COVER LETTER BLOCK: ajuste para impresión ── */
+  .cover-meta-item { padding: .65rem .85rem !important; }
   .cover-letter-block {
     padding: .8rem 1rem .7rem !important;
-    margin-top: 1.2rem !important;
-    break-inside: avoid;
-    page-break-inside: avoid;
+    margin-top: 1rem !important;
+    break-inside: avoid; page-break-inside: avoid;
   }
-  .cover-lf-value { font-size: 8pt !important; }
+  .cover-lf-value    { font-size: 8pt !important; }
   .cover-subject-text { font-size: 8.5pt !important; }
 
-  /* ── MAIN CONTENT: 20mm laterales, sin max-width ── */
+  /* ── CONTENIDO: el @page ya provee los márgenes, sólo padding vertical ── */
   .main-content {
-    padding: 6mm 20mm 10mm 20mm !important;
+    padding: 2mm 0 8mm 0 !important;
     max-width: 100% !important;
   }
 
-  /* ── BLOQUES: no cortar elementos pequeños ── */
-  /* Las tablas SÍ pueden paginar (fila a fila) como en Word */
-  .finding {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: .5rem;
+  /* ── TABLAS: paginan fila a fila (como Word), sin borde redondeado ── */
+  .table-wrap {
+    border-radius: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(13,27,46,.18) !important;
+    margin: .9rem 0 !important;
   }
-  .callout {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-top: 3mm;
-    margin-bottom: 3mm;
-  }
-  .content-resumen {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-  .guarantee-box {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-  .sig-block  { break-inside: avoid; page-break-inside: avoid; }
-  .guarantee-item { break-inside: avoid; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* repite cabecera en cada página */
 
-  /* Párrafos: mínimo 3 líneas al inicio y al final de página */
+  /* ── BLOQUES PEQUEÑOS: no cortar a la mitad ── */
+  .finding       { break-inside: avoid; page-break-inside: avoid; margin-bottom: .5rem; }
+  .callout       { break-inside: avoid; page-break-inside: avoid; margin: 3mm 0; }
+  .content-resumen { break-inside: avoid; page-break-inside: avoid; }
+  .guarantee-box   { break-inside: avoid; page-break-inside: avoid; }
+  .sig-block       { break-inside: avoid; page-break-inside: avoid; }
+  .guarantee-item  { break-inside: avoid; page-break-inside: avoid; }
+
   p { orphans: 3; widows: 3; }
-
-  /* El título de sección no queda separado de su primer bloque */
   .section-header { break-after: avoid; page-break-after: avoid; }
-
-  /* Filas de tabla: no cortar una sola fila a la mitad */
   tr { break-inside: avoid; page-break-inside: avoid; }
-
   .section { margin-bottom: 1.5rem; }
 
-  /* ── SOLO UN SALTO FORZADO: después de la portada ── */
-  /* Todo el cuerpo fluye naturalmente, sin páginas en blanco */
-  .signatures-section { break-before: page; padding-top: 8mm; }
+  /* ── SALTO ÚNICO: firmas en página nueva ── */
+  .signatures-section { break-before: page; }
 
-  .shimmer { margin: .7rem 0; height: 1px; }
+  .shimmer { margin: .6rem 0; height: 1px; }
 
-  /* ── FOOTER: margen lateral igual al resto ── */
   .report-footer {
-    padding: 6mm 20mm !important;
+    padding: 5mm 0 !important;
     break-before: avoid;
   }
 
