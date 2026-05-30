@@ -607,13 +607,82 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   .cover-meta { grid-template-columns: 1fr 1fr; }
 }
 
-/* ─── PRINT ─── */
+/* ─── PRINT BUTTON ─── */
+.print-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  background: var(--fh-blue-500);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: .7rem 1.3rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37,99,235,.35);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  transition: background .2s, transform .1s;
+}
+.print-btn:hover { background: var(--fh-blue-400); transform: translateY(-1px); }
+.print-btn:active { transform: translateY(0); }
+
+/* ─── PRINT / PDF ─── */
 @media print {
-  .blob, .nav { display: none; }
-  .main-content { padding: 0; max-width: 100%; }
-  .section { break-inside: avoid; }
-  .signatures-section { break-before: page; }
-  body { font-size: 11pt; }
+  @page {
+    size: A4 portrait;
+    margin: 18mm 18mm 22mm 18mm;
+  }
+
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .blob, .nav, .print-btn { display: none !important; }
+
+  body {
+    font-size: 10pt;
+    background: #fff !important;
+    color: #0D1B2E !important;
+  }
+
+  .cover {
+    padding: 2rem 0 1.8rem;
+    border-radius: 0;
+    margin-bottom: .5rem;
+    break-after: avoid;
+  }
+
+  .cover-title { font-size: 1.8rem !important; }
+  .cover-subtitle { font-size: .9rem !important; }
+
+  .letter-header {
+    padding: 1.2rem 0;
+    margin: 0;
+  }
+
+  .main-content {
+    padding: .5rem 0 2rem;
+    max-width: 100%;
+  }
+
+  .section { break-inside: avoid; margin-bottom: 2rem; }
+  .finding { break-inside: avoid; }
+  .table-wrap { break-inside: avoid; }
+  .guarantee-box { break-inside: avoid; }
+
+  .signatures-section { break-before: page; padding-top: 1.5rem; }
+
+  .shimmer { margin: 1.2rem 0; }
+
+  .report-footer {
+    padding: 1rem 0;
+    break-before: avoid;
+  }
+
+  .reveal { opacity: 1 !important; transform: none !important; }
 }
 </style>
 </head>
@@ -624,9 +693,17 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
 
+<!-- Print button -->
+<button class="print-btn" onclick="window.print()">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Guardar como PDF
+</button>
+
 <!-- Nav -->
 <nav class="nav">
-  <div class="nav-brand">Fresh<span>House</span></div>
+  <div class="nav-brand">
+    <img src="logo-freshouse.png" alt="FreshHouse" style="height:32px;width:auto;display:block;">
+  </div>
   <ul class="nav-links">
     <li><a href="#posicion">I. Posición</a></li>
     <li><a href="#contractual">II. Estado contractual</a></li>
@@ -642,6 +719,7 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
 <!-- Cover -->
 <header class="cover">
   <div class="cover-inner">
+    <img src="logo-freshouse.png" alt="FreshHouse" style="height:52px;width:auto;margin-bottom:1.8rem;display:block;filter:brightness(0) invert(1);">
     <div class="cover-eyebrow">Respuesta Formal — Informe Técnico Pericial</div>
     <h1 class="cover-title">Carta Respuesta<br><span>Terrazas Edificio Atlantis</span></h1>
     <p class="cover-subtitle">FreshHouse responde formalmente a los hallazgos del experto técnico<br>contratado por la Comisión Técnica del Edificio Atlantis</p>
@@ -1185,7 +1263,9 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
 
 <!-- Footer -->
 <footer class="report-footer">
-  <div class="footer-brand">Fresh<span>House</span></div>
+  <div class="footer-brand">
+    <img src="logo-freshouse.png" alt="FreshHouse" style="height:26px;width:auto;filter:brightness(0) invert(1);opacity:.8;">
+  </div>
   <div class="footer-meta">
     CARTA-RESP · PNK-001-2025 · MAYO 2026<br>
     Terrazas Edificio Atlantis · Armenia, Quindío
