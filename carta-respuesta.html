@@ -694,14 +694,20 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
     max-width: 100% !important;
   }
 
-  /* ── BLOQUES: nunca cortar por la mitad ── */
-  /* break-inside + page-break-inside para compatibilidad Chrome/Safari/Edge */
+  /* ── BLOQUES: no cortar elementos pequeños ── */
+  /* Las tablas SÍ pueden paginar (fila a fila) como en Word */
   .finding {
     break-inside: avoid;
     page-break-inside: avoid;
     margin-bottom: .5rem;
   }
-  .table-wrap {
+  .callout {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-top: 3mm;
+    margin-bottom: 3mm;
+  }
+  .content-resumen {
     break-inside: avoid;
     page-break-inside: avoid;
   }
@@ -709,53 +715,22 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
     break-inside: avoid;
     page-break-inside: avoid;
   }
-  .callout {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-top: 8mm !important;
-    margin-bottom: 4mm !important;
-  }
-  .content-resumen {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-  .cover-meta-item  { break-inside: avoid; page-break-inside: avoid; }
-  .letter-subject   { break-inside: avoid; page-break-inside: avoid; }
-  .sig-block        { break-inside: avoid; page-break-inside: avoid; }
-  .guarantee-item   { break-inside: avoid; page-break-inside: avoid; }
-  .lh-group         { break-inside: avoid; page-break-inside: avoid; }
+  .sig-block  { break-inside: avoid; page-break-inside: avoid; }
+  .guarantee-item { break-inside: avoid; page-break-inside: avoid; }
 
   /* Párrafos: mínimo 3 líneas al inicio y al final de página */
   p { orphans: 3; widows: 3; }
 
-  /* El título de sección no queda huérfano sin su primer bloque */
-  .section-header {
-    break-after: avoid;
-    page-break-after: avoid;
-  }
+  /* El título de sección no queda separado de su primer bloque */
+  .section-header { break-after: avoid; page-break-after: avoid; }
 
-  /* Filas de tabla: no cortar una fila a la mitad */
-  tr {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
+  /* Filas de tabla: no cortar una sola fila a la mitad */
+  tr { break-inside: avoid; page-break-inside: avoid; }
 
   .section { margin-bottom: 1.5rem; }
 
-  /* ── SALTOS DE PÁGINA FORZADOS ── */
-  /*
-   * Pág 2: letter-header + intro + Sección I (Posición)
-   * Pág 3: Sección II (Estado contractual) — tabla larga, página completa
-   * Pág 4: Sección III (Respuesta técnica — muy larga, puede ocupar 2 págs)
-   * Pág 5+: Sección IV (Protocolo) + callouts que fluyen a Sección V
-   * Sección V + VI fluyen naturalmente después de los callouts del IV
-   * Última: Firmas + Anexos
-   */
-  #contractual  { break-before: page; padding-top: 8mm; }
-  #respuesta    { padding-top: 4mm; }
-  #protocolo    { break-before: page; padding-top: 8mm; }
-  #compromisos  { break-before: page; padding-top: 8mm; }
-  #garantia     { break-before: page; padding-top: 8mm; }
+  /* ── SOLO UN SALTO FORZADO: después de la portada ── */
+  /* Todo el cuerpo fluye naturalmente, sin páginas en blanco */
   .signatures-section { break-before: page; padding-top: 8mm; }
 
   .shimmer { margin: .7rem 0; height: 1px; }
