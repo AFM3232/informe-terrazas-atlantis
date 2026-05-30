@@ -669,7 +669,15 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
     padding: 0 !important;
     display: flex !important;
     flex-direction: column !important;
+    align-items: flex-start !important;
     flex: 1 !important;
+  }
+  /* Logo: tamaño controlado, sin stretch del flexbox */
+  .cover img {
+    height: 38pt !important;
+    width: auto !important;
+    max-width: 65mm !important;
+    align-self: flex-start !important;
   }
   .cover-title    { font-size: 1.6rem !important; }
   .cover-subtitle { font-size: .85rem !important; margin-bottom: 1.5rem !important; }
@@ -697,18 +705,49 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   }
 
   /* ── BLOQUES: nunca cortar por la mitad ── */
-  .finding       { break-inside: avoid; margin-bottom: .5rem; }
-  .table-wrap    { break-inside: avoid; }
-  .guarantee-box { break-inside: avoid; }
-  .callout       { break-inside: avoid; }
-  .content-resumen { break-inside: avoid; }
-  .cover-meta-item { break-inside: avoid; }
+  /* break-inside + page-break-inside para compatibilidad Chrome/Safari/Edge */
+  .finding {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: .5rem;
+  }
+  .table-wrap {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .guarantee-box {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .callout {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .content-resumen {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .cover-meta-item  { break-inside: avoid; page-break-inside: avoid; }
+  .letter-subject   { break-inside: avoid; page-break-inside: avoid; }
+  .sig-block        { break-inside: avoid; page-break-inside: avoid; }
+  .guarantee-item   { break-inside: avoid; page-break-inside: avoid; }
+  .lh-group         { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Párrafos: mínimo 3 líneas al inicio y al final de página */
+  p { orphans: 3; widows: 3; }
 
   /* El título de sección no queda huérfano sin su primer bloque */
-  .section-header { break-after: avoid; }
+  .section-header {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
 
-  /* Secciones largas: no romper el bloque completo (son demasiado grandes),
-     pero sí evitar que el header quede solo al final de página */
+  /* Filas de tabla: no cortar una fila a la mitad */
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
   .section { margin-bottom: 1.5rem; }
 
   /* ── SALTOS DE PÁGINA FORZADOS ── */
