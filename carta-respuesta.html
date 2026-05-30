@@ -200,61 +200,50 @@ body {
   color: #fff;
 }
 
-/* ─── LETTER HEADER (formal) ─── */
-.letter-header {
-  position: relative;
-  z-index: 1;
-  background: var(--bg-deep);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 2.5rem 3rem;
-  max-width: 860px;
-  margin: 0 auto;
+/* ─── COVER LETTER BLOCK (destinatario/asunto dentro de la portada) ─── */
+.cover-letter-block {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem 1rem;
+  margin-top: 1.8rem;
+  width: 100%;
 }
-.letter-header-grid {
+.cover-letter-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 3rem;
-  margin-bottom: 1.5rem;
+  gap: .75rem 2.5rem;
+  margin-bottom: .9rem;
 }
-.lh-group {}
-.lh-label {
+.cover-lf-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .55rem;
+  font-size: .54rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: .2rem;
+  color: rgba(255,255,255,.42);
+  margin-bottom: .18rem;
 }
-.lh-value {
+.cover-lf-value {
   font-family: 'Inter', sans-serif;
-  font-size: .85rem;
+  font-size: .84rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: rgba(255,255,255,.88);
+  line-height: 1.4;
 }
-.lh-value.placeholder {
-  color: var(--fh-orange-dark);
+.cover-lf-value.placeholder {
+  color: rgba(249,115,22,.88);
   font-style: italic;
 }
-.letter-subject {
-  background: var(--fh-blue-100);
-  border-left: 3px solid var(--fh-blue-400);
-  border-radius: 0 8px 8px 0;
-  padding: .9rem 1.25rem;
-  margin-top: 1rem;
+.cover-subject-block {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: .75rem;
 }
-.letter-subject .subject-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .55rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--fh-blue-500);
-  margin-bottom: .2rem;
-}
-.letter-subject .subject-text {
+.cover-subject-text {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: .9rem;
+  font-size: .88rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #fff;
+  line-height: 1.5;
 }
 
 /* ─── MAIN LAYOUT ─── */
@@ -689,14 +678,15 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   }
   .cover-meta-item { padding: .7rem .9rem !important; }
 
-  /* ── LETTER HEADER: márgenes consistentes con el cuerpo ── */
-  .letter-header {
-    padding: 8mm 20mm 6mm 20mm !important;
-    margin: 0 !important;
-    border-bottom: 1px solid rgba(13,27,46,.1);
+  /* ── COVER LETTER BLOCK: ajuste para impresión ── */
+  .cover-letter-block {
+    padding: .8rem 1rem .7rem !important;
+    margin-top: 1.2rem !important;
     break-inside: avoid;
+    page-break-inside: avoid;
   }
-  .letter-header-grid { gap: .8rem 2rem !important; }
+  .cover-lf-value { font-size: 8pt !important; }
+  .cover-subject-text { font-size: 8.5pt !important; }
 
   /* ── MAIN CONTENT: 20mm laterales, sin max-width ── */
   .main-content {
@@ -759,10 +749,11 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
    * Sección V + VI fluyen naturalmente después de los callouts del IV
    * Última: Firmas + Anexos
    */
-  #contractual { break-before: page; }   /* Sec II sola — la tabla es larga  */
-  #respuesta   { break-before: page; }   /* Sec III inicia página fresca      */
-  #protocolo   { break-before: page; }   /* Sec IV inicia página fresca       */
-  /* #compromisos: SIN break-before — fluye tras los callouts de Sec IV      */
+  #contractual  { break-before: page; }   /* Sec II — tabla larga, pág propia  */
+  #respuesta    { break-before: page; }   /* Sec III — inicia página fresca    */
+  #protocolo    { break-before: page; }   /* Sec IV — inicia página fresca     */
+  #compromisos  { break-before: page; }   /* Sec V — 7 findings, pág propia   */
+  #garantia     { break-before: page; }   /* Sec VI — guarantee box, pág propia*/
   .signatures-section { break-before: page; padding-top: 8mm; }
 
   .shimmer { margin: .7rem 0; height: 1px; }
@@ -814,6 +805,33 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
     <div class="cover-eyebrow">Respuesta Formal — Informe Técnico Pericial</div>
     <h1 class="cover-title">Carta Respuesta<br><span>Terrazas Edificio Atlantis</span></h1>
     <p class="cover-subtitle">Freshouse responde formalmente a los hallazgos del experto técnico<br>contratado por la Comisión Técnica del Edificio Atlantis</p>
+
+    <!-- Campos formales de la carta dentro de la portada -->
+    <div class="cover-letter-block">
+      <div class="cover-letter-grid">
+        <div class="cover-lf-item">
+          <div class="cover-lf-label">Destinatario</div>
+          <div class="cover-lf-value placeholder">[NOMBRE ADMINISTRADOR / COMISIÓN TÉCNICA]</div>
+        </div>
+        <div class="cover-lf-item">
+          <div class="cover-lf-label">Cargo</div>
+          <div class="cover-lf-value placeholder">[CARGO — ej. Administrador Edificio Atlantis]</div>
+        </div>
+        <div class="cover-lf-item">
+          <div class="cover-lf-label">Fecha</div>
+          <div class="cover-lf-value">Armenia, Quindío — Mayo de 2026</div>
+        </div>
+        <div class="cover-lf-item">
+          <div class="cover-lf-label">No. Contrato / Ref.</div>
+          <div class="cover-lf-value placeholder">[CONTRATO-XXXX] · PNK-001-2025</div>
+        </div>
+      </div>
+      <div class="cover-subject-block">
+        <div class="cover-lf-label">Asunto</div>
+        <div class="cover-subject-text">Respuesta formal al informe técnico pericial sobre impermeabilización de terrazas — Protocolo de solución y compromisos de Freshouse</div>
+      </div>
+    </div>
+
     <div class="cover-meta">
       <div class="cover-meta-item">
         <div class="cover-meta-label">Referencia</div>
@@ -834,32 +852,6 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
     </div>
   </div>
 </header>
-
-<!-- Formal Letter Header -->
-<div class="letter-header">
-  <div class="letter-header-grid">
-    <div class="lh-group">
-      <div class="lh-label">Destinatario</div>
-      <div class="lh-value placeholder">[NOMBRE ADMINISTRADOR / COMISIÓN TÉCNICA]</div>
-    </div>
-    <div class="lh-group">
-      <div class="lh-label">Cargo</div>
-      <div class="lh-value placeholder">[CARGO — ej. Administrador Edificio Atlantis]</div>
-    </div>
-    <div class="lh-group">
-      <div class="lh-label">Fecha</div>
-      <div class="lh-value">Armenia, Quindío — Mayo de 2026</div>
-    </div>
-    <div class="lh-group">
-      <div class="lh-label">No. Contrato / Ref.</div>
-      <div class="lh-value placeholder">[CONTRATO-XXXX] · PNK-001-2025</div>
-    </div>
-  </div>
-  <div class="letter-subject">
-    <div class="subject-label">Asunto</div>
-    <div class="subject-text">Respuesta formal al informe técnico pericial sobre impermeabilización de terrazas — Protocolo de solución y compromisos de Freshouse</div>
-  </div>
-</div>
 
 <!-- Main Content -->
 <main class="main-content">
