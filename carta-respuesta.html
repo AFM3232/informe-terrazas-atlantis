@@ -633,9 +633,13 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
 
 /* ─── PRINT / PDF ─── */
 @media print {
+  /*
+   * @page margin = 0 → el cover azul llena el ancho A4 sin bordes blancos.
+   * Todos los márgenes se controlan con padding interno en cada bloque.
+   */
   @page {
     size: A4 portrait;
-    margin: 18mm 18mm 22mm 18mm;
+    margin: 0;
   }
 
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -643,42 +647,72 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   .blob, .nav, .print-btn { display: none !important; }
 
   body {
-    font-size: 10pt;
+    font-size: 9.5pt;
     background: #fff !important;
     color: #0D1B2E !important;
-  }
-
-  .cover {
-    padding: 2rem 0 1.8rem;
-    border-radius: 0;
-    margin-bottom: .5rem;
-    break-after: avoid;
-  }
-
-  .cover-title { font-size: 1.8rem !important; }
-  .cover-subtitle { font-size: .9rem !important; }
-
-  .letter-header {
-    padding: 1.2rem 0;
     margin: 0;
+    padding: 0;
+    width: 210mm;
   }
 
+  /* ── COVER: página 1, sangría completa, salto de página al terminar ── */
+  .cover {
+    padding: 18mm 20mm 14mm 20mm !important;
+    border-radius: 0 !important;
+    break-after: page;
+  }
+  .cover-inner { max-width: 100% !important; padding: 0 !important; }
+  .cover-title  { font-size: 1.6rem !important; }
+  .cover-subtitle { font-size: .85rem !important; margin-bottom: 1.2rem !important; }
+  .cover-meta { grid-template-columns: repeat(4, 1fr) !important; gap: .6rem !important; }
+  .cover-meta-item { padding: .6rem .8rem !important; }
+
+  /* ── LETTER HEADER: márgenes consistentes con el cuerpo ── */
+  .letter-header {
+    padding: 8mm 20mm 6mm 20mm !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(13,27,46,.1);
+    break-inside: avoid;
+  }
+  .letter-header-grid { gap: .8rem 2rem !important; }
+
+  /* ── MAIN CONTENT: 20mm laterales, sin max-width ── */
   .main-content {
-    padding: .5rem 0 2rem;
-    max-width: 100%;
+    padding: 6mm 20mm 10mm 20mm !important;
+    max-width: 100% !important;
   }
 
-  .section { break-inside: avoid; margin-bottom: 2rem; }
-  .finding { break-inside: avoid; }
-  .table-wrap { break-inside: avoid; }
+  /* ── BLOQUES: nunca cortar por la mitad ── */
+  .finding       { break-inside: avoid; margin-bottom: .5rem; }
+  .table-wrap    { break-inside: avoid; }
   .guarantee-box { break-inside: avoid; }
+  .callout       { break-inside: avoid; }
+  .content-resumen { break-inside: avoid; }
+  .cover-meta-item { break-inside: avoid; }
 
-  .signatures-section { break-before: page; padding-top: 1.5rem; }
+  /* El título de sección no queda huérfano sin su primer bloque */
+  .section-header { break-after: avoid; }
 
-  .shimmer { margin: 1.2rem 0; }
+  /* Secciones largas: no romper el bloque completo (son demasiado grandes),
+     pero sí evitar que el header quede solo al final de página */
+  .section { margin-bottom: 1.5rem; }
 
+  /* ── SALTOS DE PÁGINA FORZADOS ── */
+  /* Página 2 empieza con: letter-header + intro + Sección I + Sección II  */
+  /* Página 3: Sección III (Respuesta técnica — es muy larga)               */
+  #respuesta   { break-before: page; }
+  /* Página 4: Sección IV (Protocolo)                                       */
+  #protocolo   { break-before: page; }
+  /* Página 5: Sección V + VI juntas (compromisos + garantía)               */
+  #compromisos { break-before: page; }
+  /* Página 6: Firmas + Anexos                                              */
+  .signatures-section { break-before: page; padding-top: 8mm; }
+
+  .shimmer { margin: .7rem 0; height: 1px; }
+
+  /* ── FOOTER: margen lateral igual al resto ── */
   .report-footer {
-    padding: 1rem 0;
+    padding: 6mm 20mm !important;
     break-before: avoid;
   }
 
