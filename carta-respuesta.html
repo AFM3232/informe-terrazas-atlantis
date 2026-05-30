@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta Respuesta — Terrazas Edificio Atlantis | FreshHouse</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg-base:      #F8FAFF;
+  --bg-deep:      #FFFFFF;
+  --bg-elevated:  #EEF3FD;
+  --bg-surface:   #E4EDF8;
+  --bg-glass:     rgba(255,255,255,0.90);
+  --fh-blue-900:  #0A1628;
+  --fh-blue-700:  #0F2D5C;
+  --fh-blue-500:  #1A52A8;
+  --fh-blue-400:  #2563EB;
+  --fh-blue-300:  #3B82F6;
+  --fh-blue-100:  rgba(59,130,246,0.09);
+  --fh-blue-glow: rgba(37,99,235,0.15);
+  --fh-orange:      #F97316;
+  --fh-orange-dark: #EA580C;
+  --fh-orange-muted: rgba(249,115,22,0.09);
+  --fh-orange-glow:  rgba(249,115,22,0.20);
+  --fh-orange-border: rgba(249,115,22,0.30);
+  --text-primary:   #0D1B2E;
+  --text-secondary: #3A5270;
+  --text-muted:     #849AB8;
+  --text-orange:    #EA580C;
+  --border-subtle: rgba(13,27,46,0.07);
+  --border-mid:    rgba(13,27,46,0.13);
+  --border-blue:   rgba(37,99,235,0.16);
+  --border-orange: rgba(249,115,22,0.26);
+  --status-critical: #DC2626;
+  --status-warning:  #EA580C;
+  --status-ok:       #16A34A;
+  --status-info:     #2563EB;
+  --glow-blue-sm:   0 2px 16px rgba(37,99,235,0.10), 0 8px 32px rgba(37,99,235,0.07);
+  --glow-blue-md:   0 4px 32px rgba(37,99,235,0.14), 0 16px 48px rgba(37,99,235,0.08);
+  --glow-orange-sm: 0 2px 16px rgba(249,115,22,0.10), 0 8px 32px rgba(249,115,22,0.07);
+  --glow-orange-md: 0 4px 32px rgba(249,115,22,0.14), 0 16px 48px rgba(249,115,22,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.85;
+  font-size: 15px;
+  overflow-x: hidden;
+}
+
+/* ─── BLOBS ─── */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .13;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatBlob 22s ease-in-out infinite;
+}
+.blob-1 { width: 500px; height: 500px; background: var(--fh-blue-400); top: -120px; left: -100px; animation-duration: 18s; }
+.blob-2 { width: 380px; height: 380px; background: var(--fh-orange); bottom: 10%; right: -80px; animation-duration: 26s; animation-delay: -8s; }
+.blob-3 { width: 300px; height: 300px; background: var(--fh-blue-300); top: 45%; left: 30%; animation-duration: 22s; animation-delay: -4s; }
+
+@keyframes floatBlob {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-20px) scale(1.05); }
+  66% { transform: translate(-20px,30px) scale(.95); }
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(248,250,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: .7rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.nav-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--fh-blue-500);
+  letter-spacing: -.01em;
+}
+.nav-brand span { color: var(--fh-orange); }
+.nav-ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem;
+  color: var(--text-muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: 1.4rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: .02em;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--fh-blue-400); }
+
+/* ─── COVER ─── */
+.cover {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, var(--fh-blue-900) 0%, var(--fh-blue-700) 55%, #1a3a6e 100%);
+  color: #fff;
+  padding: 5rem 3rem 4.5rem;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 80% 30%, rgba(249,115,22,.18), transparent),
+              radial-gradient(ellipse 50% 40% at 10% 80%, rgba(37,99,235,.25), transparent);
+  pointer-events: none;
+}
+.cover-inner { position: relative; max-width: 860px; margin: 0 auto; }
+.cover-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .6rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.cover-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--fh-orange);
+}
+.cover-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.12;
+  margin-bottom: .6rem;
+  letter-spacing: -.03em;
+}
+.cover-title span { color: var(--fh-orange); }
+.cover-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(255,255,255,.7);
+  margin-bottom: 2.5rem;
+}
+.cover-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.cover-meta-item {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: .9rem 1.1rem;
+}
+.cover-meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .55rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-bottom: .25rem;
+}
+.cover-meta-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ─── LETTER HEADER (formal) ─── */
+.letter-header {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 2.5rem 3rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.letter-header-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 3rem;
+  margin-bottom: 1.5rem;
+}
+.lh-group {}
+.lh-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .55rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: .2rem;
+}
+.lh-value {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.lh-value.placeholder {
+  color: var(--fh-orange-dark);
+  font-style: italic;
+}
+.letter-subject {
+  background: var(--fh-blue-100);
+  border-left: 3px solid var(--fh-blue-400);
+  border-radius: 0 8px 8px 0;
+  padding: .9rem 1.25rem;
+  margin-top: 1rem;
+}
+.letter-subject .subject-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .55rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fh-blue-500);
+  margin-bottom: .2rem;
+}
+.letter-subject .subject-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ─── MAIN LAYOUT ─── */
+.main-content {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 3rem 5rem;
+}
+
+/* ─── SECTION ─── */
+.section {
+  margin-bottom: 4rem;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  margin-bottom: 1.6rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fh-orange-dark);
+  background: var(--fh-orange-muted);
+  border: 1px solid var(--fh-orange-border);
+  border-radius: 6px;
+  padding: .25rem .6rem;
+  white-space: nowrap;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -.02em;
+}
+
+/* ─── CONTENT RESUMEN ─── */
+.content-resumen {
+  background: var(--fh-blue-100);
+  border-left: 3px solid var(--fh-blue-400);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--fh-blue-500);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+/* ─── CALLOUT (orange) ─── */
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  background: rgba(249,115,22,.06);
+  border-left: 3px solid var(--fh-orange);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+}
+.callout-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+.callout p {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.callout strong { color: var(--text-primary); }
+
+/* ─── FINDING ─── */
+.finding {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0 10px 10px 0;
+  border-left: 3px solid transparent;
+  margin-bottom: .85rem;
+}
+.finding--warning {
+  background: rgba(234,88,12,.03);
+  border-left-color: var(--status-warning);
+}
+.finding--ok {
+  background: rgba(22,163,74,.03);
+  border-left-color: var(--status-ok);
+}
+.finding--info {
+  background: rgba(37,99,235,.03);
+  border-left-color: var(--status-info);
+}
+.finding-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .62rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+.finding--warning .finding-num { background: rgba(234,88,12,.12); color: var(--status-warning); }
+.finding--ok .finding-num { background: rgba(22,163,74,.12); color: var(--status-ok); }
+.finding--info .finding-num { background: rgba(37,99,235,.12); color: var(--status-info); }
+.finding-body h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: .25rem;
+}
+.finding-body p {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.finding-body p strong { color: var(--text-primary); }
+
+/* ─── TABLES ─── */
+.table-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--glow-blue-sm);
+  margin: 1.25rem 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead {
+  background: var(--fh-blue-100);
+}
+th {
+  padding: .85rem 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fh-blue-500);
+  text-align: left;
+  white-space: nowrap;
+}
+td {
+  padding: .85rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  vertical-align: top;
+  line-height: 1.6;
+}
+tr:hover td { background: var(--bg-base); }
+td strong { color: var(--text-primary); font-weight: 600; }
+td.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem;
+  color: var(--fh-blue-500);
+}
+tr.row-total td {
+  background: rgba(249,115,22,.04);
+  border-top: 1px solid var(--fh-orange-border);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+tr.row-total td:first-child { color: var(--fh-orange-dark); }
+
+/* ─── GUARANTEE BOX ─── */
+.guarantee-box {
+  background: linear-gradient(135deg, rgba(10,22,40,.96) 0%, rgba(15,45,92,.95) 100%);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--glow-blue-md);
+  margin-top: 1.25rem;
+}
+.guarantee-box h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.guarantee-box h3 span.gicon {
+  background: rgba(249,115,22,.2);
+  color: var(--fh-orange);
+  border-radius: 6px;
+  padding: .2rem .45rem;
+  font-size: .75rem;
+}
+.guarantee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+.guarantee-item {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+  padding: .9rem 1rem;
+}
+.guarantee-item .gi-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .54rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-bottom: .3rem;
+}
+.guarantee-item .gi-value {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  color: rgba(255,255,255,.87);
+  line-height: 1.65;
+}
+.guarantee-item .gi-value strong { color: var(--fh-orange); }
+
+/* ─── SHIMMER DIVIDER ─── */
+.shimmer {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--fh-blue-300) 30%, var(--fh-orange) 70%, transparent 100%);
+  margin: 2.5rem 0;
+  opacity: .35;
+}
+
+/* ─── SIGNATURES ─── */
+.signatures-section {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.sig-intro {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.sig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.sig-block {}
+.sig-line {
+  height: 56px;
+  border-bottom: 1.5px solid var(--border-mid);
+  margin-bottom: .75rem;
+}
+.sig-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: .15rem;
+}
+.sig-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .57rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.sig-placeholder {
+  font-style: italic;
+  color: var(--fh-orange-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: .78rem;
+}
+
+/* ─── ANNEXES ─── */
+.annex-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  font-weight: 500;
+  color: var(--fh-blue-500);
+}
+
+/* ─── FOOTER ─── */
+.report-footer {
+  position: relative;
+  z-index: 1;
+  background: var(--fh-blue-900);
+  color: rgba(255,255,255,.45);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.7);
+}
+.footer-brand span { color: var(--fh-orange); }
+.footer-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .55rem;
+  letter-spacing: .08em;
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* ─── REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  .cover { padding: 3.5rem 1.5rem 3rem; }
+  .main-content { padding: 2rem 1.5rem 4rem; }
+  .letter-header { padding: 1.5rem; }
+  .letter-header-grid { grid-template-columns: 1fr; }
+  .sig-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .guarantee-grid { grid-template-columns: 1fr; }
+  .cover-meta { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── PRINT ─── */
+@media print {
+  .blob, .nav { display: none; }
+  .main-content { padding: 0; max-width: 100%; }
+  .section { break-inside: avoid; }
+  .signatures-section { break-before: page; }
+  body { font-size: 11pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- Blobs -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-brand">Fresh<span>House</span></div>
+  <ul class="nav-links">
+    <li><a href="#posicion">I. Posición</a></li>
+    <li><a href="#contractual">II. Estado contractual</a></li>
+    <li><a href="#respuesta">III. Hallazgos</a></li>
+    <li><a href="#protocolo">IV. Protocolo</a></li>
+    <li><a href="#compromisos">V. Compromisos</a></li>
+    <li><a href="#garantia">VI. Garantía</a></li>
+    <li><a href="#anexos">Anexos</a></li>
+  </ul>
+  <div class="nav-ref">CARTA-RESP · PNK-001-2025</div>
+</nav>
+
+<!-- Cover -->
+<header class="cover">
+  <div class="cover-inner">
+    <div class="cover-eyebrow">Respuesta Formal — Informe Técnico Pericial</div>
+    <h1 class="cover-title">Carta Respuesta<br><span>Terrazas Edificio Atlantis</span></h1>
+    <p class="cover-subtitle">FreshHouse responde formalmente a los hallazgos del experto técnico<br>contratado por la Comisión Técnica del Edificio Atlantis</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Referencia</div>
+        <div class="cover-meta-value">PNK-001-2025</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Fecha</div>
+        <div class="cover-meta-value">Mayo 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Edificio</div>
+        <div class="cover-meta-value">Atlantis · Armenia, Quindío</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Empresa</div>
+        <div class="cover-meta-value">FreshHouse</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Formal Letter Header -->
+<div class="letter-header">
+  <div class="letter-header-grid">
+    <div class="lh-group">
+      <div class="lh-label">Destinatario</div>
+      <div class="lh-value placeholder">[NOMBRE ADMINISTRADOR / COMISIÓN TÉCNICA]</div>
+    </div>
+    <div class="lh-group">
+      <div class="lh-label">Cargo</div>
+      <div class="lh-value placeholder">[CARGO — ej. Administrador Edificio Atlantis]</div>
+    </div>
+    <div class="lh-group">
+      <div class="lh-label">Fecha</div>
+      <div class="lh-value">Armenia, Quindío — Mayo de 2026</div>
+    </div>
+    <div class="lh-group">
+      <div class="lh-label">No. Contrato / Ref.</div>
+      <div class="lh-value placeholder">[CONTRATO-XXXX] · PNK-001-2025</div>
+    </div>
+  </div>
+  <div class="letter-subject">
+    <div class="subject-label">Asunto</div>
+    <div class="subject-text">Respuesta formal al informe técnico pericial sobre impermeabilización de terrazas — Protocolo de solución y compromisos de FreshHouse</div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="main-content">
+
+  <!-- INTRO PARAGRAPH -->
+  <div class="reveal" style="margin-bottom:2.5rem;">
+    <p style="font-family:'Inter',sans-serif;font-size:.88rem;color:var(--text-secondary);line-height:1.9;">
+      En atención a la reunión sostenida con la Comisión Técnica del Edificio Atlantis y en respuesta al informe técnico pericial elaborado por el experto contratado por dicha comisión, la empresa <strong style="color:var(--text-primary)">FreshHouse</strong> presenta a continuación su posición formal, la respuesta técnica a cada uno de los hallazgos identificados, el protocolo de solución avalado por el fabricante <strong style="color:var(--text-primary)">Sika Colombia</strong>, y los compromisos concretos que garantizan la correcta terminación y entrega de la obra.
+    </p>
+  </div>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- SECCIÓN I: POSICIÓN Y COMPROMISO -->
+  <section class="section reveal" id="posicion">
+    <div class="section-header">
+      <span class="section-num">I</span>
+      <h2 class="section-title">Posición y Compromiso Formal de FreshHouse</h2>
+    </div>
+
+    <div class="content-resumen">
+      FreshHouse acoge el informe técnico pericial como un insumo técnico válido y constructivo. Esta carta constituye la respuesta formal acordada en reunión y refleja el compromiso de la empresa con la calidad, la transparencia documental y la correcta terminación de la obra contratada.
+    </div>
+
+    <div class="finding finding--info reveal">
+      <div class="finding-num">1</div>
+      <div class="finding-body">
+        <h4>Reconocimiento del informe pericial</h4>
+        <p>FreshHouse reconoce y valora el informe técnico elaborado por el experto designado por la Comisión Técnica. Los hallazgos señalados son tomados como insumo técnico formal para la culminación y entrega definitiva de la obra.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--info reveal">
+      <div class="finding-num">2</div>
+      <div class="finding-body">
+        <h4>Respuesta acordada en reunión</h4>
+        <p>Esta carta respuesta es el documento formal comprometido en la reunión con la Comisión Técnica. Contiene posición técnica, protocolos de solución avalados por el fabricante y compromisos verificables con fechas y responsables.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--info reveal">
+      <div class="finding-num">3</div>
+      <div class="finding-body">
+        <h4>Compromiso de gestión transparente</h4>
+        <p>FreshHouse se compromete a que todo el proceso de corrección y entrega final quede documentado, sea accesible a la Comisión Técnica en tiempo real y cuente con los avales técnicos del fabricante Sika, de manera que no se repitan las situaciones de incertidumbre de meses anteriores.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- SECCIÓN II: ESTADO CONTRACTUAL -->
+  <section class="section reveal" id="contractual">
+    <div class="section-header">
+      <span class="section-num">II</span>
+      <h2 class="section-title">Estado Contractual y Financiero</h2>
+    </div>
+
+    <div class="content-resumen">
+      A continuación se presenta el estado actual del contrato. Estos datos fundamentan los compromisos asumidos en la Sección V y la condición de pago del saldo pendiente.
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Parámetro</th>
+            <th>Detalle</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Referencia del contrato</strong></td>
+            <td class="mono placeholder" style="color:var(--fh-orange-dark);font-style:italic;">[CONTRATO-XXXX]</td>
+            <td><span style="background:rgba(37,99,235,.1);color:var(--fh-blue-500);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">VIGENTE</span></td>
+          </tr>
+          <tr>
+            <td><strong>Contratante</strong></td>
+            <td>Administración Edificio Atlantis — Armenia, Quindío</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Objeto del contrato</strong></td>
+            <td>Impermeabilización de terrazas con sistema Sikalastic 612 / 617 / 701</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Área total impermeabilizada</strong></td>
+            <td class="mono">640,52 m²</td>
+            <td><span style="background:rgba(22,163,74,.1);color:var(--status-ok);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">EJECUTADO</span></td>
+          </tr>
+          <tr>
+            <td><strong>Avance de obra facturado</strong></td>
+            <td class="mono">60%</td>
+            <td><span style="background:rgba(22,163,74,.1);color:var(--status-ok);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">ACTA APROBADA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Avance pendiente de entrega</strong></td>
+            <td class="mono">40%</td>
+            <td><span style="background:rgba(234,88,12,.1);color:var(--status-warning);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">PENDIENTE ENTREGA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Estado de entrega</strong></td>
+            <td>Obra no entregada formalmente. Zonas faltantes (~2 m²) pendientes de terminar.</td>
+            <td><span style="background:rgba(249,115,22,.1);color:var(--fh-orange-dark);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">PENDIENTE</span></td>
+          </tr>
+          <tr>
+            <td><strong>Materiales</strong></td>
+            <td>Todos los materiales del sistema (Sikalastic 612, 617, 701 y Sikajustador Uretano) fueron adquiridos íntegramente por FreshHouse.</td>
+            <td><span style="background:rgba(22,163,74,.1);color:var(--status-ok);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">CONFIRMADO</span></td>
+          </tr>
+          <tr style="background:rgba(249,115,22,.03);border-left:3px solid var(--fh-orange-border);">
+            <td><strong>Trabajo adicional ejecutado</strong></td>
+            <td>Aplicación de <strong>Sikalastic 701 CO</strong> (top coat de protección) sobre la totalidad de la superficie impermeabilizada. Esta actividad <strong>no estaba contemplada en los términos de referencia iniciales del contrato</strong> y fue ejecutada por FreshHouse como refuerzo técnico del sistema, sin costo adicional para el contratante.</td>
+            <td><span style="background:rgba(249,115,22,.12);color:var(--fh-orange-dark);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">ADICIONAL · EJECUTADO</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-icon">📋</div>
+      <p><strong>Condición de cierre contractual:</strong> FreshHouse confirma que <strong>el acta de entrega definitiva solo se suscribirá una vez terminada la obra en su totalidad</strong>, incluyendo la corrección de los abombamientos encontrados y la finalización de las zonas pendientes, con recibo a satisfacción de la Comisión Técnica.</p>
+    </div>
+  </section>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- SECCIÓN III: RESPUESTA TÉCNICA -->
+  <section class="section reveal" id="respuesta">
+    <div class="section-header">
+      <span class="section-num">III</span>
+      <h2 class="section-title">Respuesta Técnica a los Hallazgos del Informe</h2>
+    </div>
+
+    <div class="content-resumen">
+      A continuación se presenta la posición técnica de FreshHouse frente a cada hallazgo identificado en el informe pericial, con base en el registro de actividades, los protocolos del fabricante Sika y la asesoría recibida directamente de la representante técnica del fabricante.
+    </div>
+
+    <div class="finding finding--warning reveal">
+      <div class="finding-num">1</div>
+      <div class="finding-body">
+        <h4>Abombamientos en la membrana — fenómeno técnico esperado en parches de humedad residual</h4>
+        <p>Los abombamientos detectados en zonas puntuales de la membrana son un fenómeno técnicamente conocido en sistemas de impermeabilización sobre sustratos que presentaron variaciones localizadas de humedad. La explicación técnica es la siguiente:</p>
+        <p style="margin-top:.6rem;">Las membranas de poliuretano como Sikalastic 617 CO presentan una permeabilidad al vapor de agua muy baja una vez curadas. Cuando en el sustrato de concreto existen <strong>microzonas con humedad residual por encima del umbral de 4%</strong> — generadas por filtraciones anteriores, sombras de evaporación o zonas de baja ventilación bajo la membrana preexistente activada — la presión de vapor generada por esa humedad residual durante el proceso de curado y bajo la acción térmica solar no logra disiparse a través de la membrana. Esta presión de vapor queda atrapada entre el sustrato y la capa impermeabilizante, generando una <strong>separación localizada (ampolla o abombamiento)</strong> en las zonas donde la humedad residual era mayor al promedio medido.</p>
+        <p style="margin-top:.6rem;">Las mediciones de humedad se realizaron y registraron conforme al protocolo Sika, y los valores generales del sustrato estaban dentro del rango permitido (≤4%). Sin embargo, es técnicamente posible que <strong>microparches de humedad puntual</strong> debidos a la historia de filtraciones previas de la placa hayan permanecido encapsulados en zonas no detectables con la malla de medición estándar. Este comportamiento es reconocido por el fabricante en la comunicación del 13/02/2026 (Anexo VIII) y en la propia ficha técnica del producto, que indica la importancia de un sustrato uniforme y libre de humedad localizada. <strong>Las zonas afectadas son de área muy pequeña (~3 puntos) y son corregibles mediante el protocolo descrito en la Sección IV.</strong></p>
+      </div>
+    </div>
+
+    <div class="finding finding--warning reveal">
+      <div class="finding-num">2</div>
+      <div class="finding-body">
+        <h4>Membrana preexistente en la placa</h4>
+        <p>La placa contaba con una membrana preexistente en algunas zonas. Siguiendo el protocolo del fabricante, esta fue <strong>activada con Sikajustador Uretano</strong> antes de la aplicación del nuevo sistema, permitiendo la adhesión correcta del Sikalastic 617. El procedimiento fue realizado conforme a las indicaciones de Sika y se cuenta con registro de esta actividad.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">3</div>
+      <div class="finding-body">
+        <h4>Pruebas de humedad — protocolo cumplido</h4>
+        <p>Se realizaron mediciones de humedad en sustrato previo a cada etapa de aplicación, conforme a lo indicado en la ficha técnica de Sika y a las instrucciones recibidas por escrito de la representante técnica del fabricante el <strong>13 de febrero de 2026</strong>. Los registros de estas mediciones están disponibles como Anexo V y serán cargados en la carpeta Drive compartida.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">4</div>
+      <div class="finding-body">
+        <h4>Estado de filtraciones — funcional</h4>
+        <p>Luego de la aplicación del sistema impermeabilizante y durante un período de seguimiento de dos meses, se realizaron visitas a los apartamentos afectados originalmente por humedad. <strong>En la actualidad los apartamentos no presentan filtraciones.</strong> El apartamento 903 se encuentra en seguimiento activo por indicación de un estudio realizado por uno de los propietarios; se continuará monitoreando y se reportará en la carpeta Drive.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--info reveal">
+      <div class="finding-num">5</div>
+      <div class="finding-body">
+        <h4>Zonas faltantes (~2 m²) — parte de la entrega pendiente</h4>
+        <p>Se deja constancia de que la obra <strong>no ha sido entregada formalmente</strong>. Las zonas faltantes de aproximadamente 2 m² son parte integral de la entrega pendiente. Estas serán completadas junto con la corrección de los abombamientos encontrados, conforme al protocolo de la Sección IV, antes de solicitar la entrega definitiva.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">6</div>
+      <div class="finding-body">
+        <h4>Aplicación de Sikalastic 701 CO — trabajo adicional fuera de los términos de referencia iniciales</h4>
+        <p>FreshHouse informa que realizó la aplicación de <strong>Sikalastic 701 CO</strong> (capa de acabado top coat) sobre la totalidad de la superficie impermeabilizada. Esta actividad <strong>no estaba contemplada en los términos de referencia iniciales del contrato</strong>.</p>
+        <p style="margin-top:.6rem;">Desde el punto de vista técnico, el Sikalastic 701 CO cumple una función de protección superficial crítica: es una capa de base alquídica diseñada para proteger la membrana de poliuretano Sikalastic 617 CO de la <strong>degradación por radiación ultravioleta (UV)</strong>, la abrasión superficial y la acción térmica directa del sol. Sin esta capa de protección, el Sikalastic 617 queda expuesto a la fotodegradación que, bajo las condiciones climáticas de Armenia (Quindío), puede reducir significativamente la vida útil del sistema impermeabilizante. La aplicación del top coat fue, por tanto, una <strong>decisión técnicamente correcta y necesaria</strong> para garantizar el desempeño y la durabilidad del sistema dentro del rango de vida útil de 5 a 7 años indicado por el fabricante.</p>
+        <p style="margin-top:.6rem;">FreshHouse ejecutó esta actividad como parte de su compromiso con la calidad de la obra. Se deja constancia de esta ejecución para que la Comisión Técnica y el contratante tengan claridad sobre el alcance real de los trabajos realizados.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- SECCIÓN IV: PROTOCOLO DE SOLUCIÓN -->
+  <section class="section reveal" id="protocolo">
+    <div class="section-header">
+      <span class="section-num">IV</span>
+      <h2 class="section-title">Protocolo de Solución — Avalado por Fabricante Sika</h2>
+    </div>
+
+    <div class="content-resumen">
+      El protocolo que se detalla a continuación ha sido definido con base en la comunicación escrita del representante técnico de Sika Colombia, recibida el <strong>13 de febrero de 2026</strong> (Anexo VIII). Este protocolo aplica tanto para la corrección de abombamientos como para los repintes y terminaciones de zonas faltantes.
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Actividad</th>
+            <th>Producto</th>
+            <th>Especificación técnica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">01</td>
+            <td><strong>Corte y delimitación del área afectada</strong></td>
+            <td>—</td>
+            <td>Cortar el abombamiento, delimitar el área afectada. No extender el corte más allá de lo necesario.</td>
+          </tr>
+          <tr>
+            <td class="mono">02</td>
+            <td><strong>Activación de la superficie</strong></td>
+            <td>Sikajustador Uretano</td>
+            <td>Aplicar Sikajustador Uretano sobre la zona cortada y las capas existentes adyacentes. <strong>Dejar evaporar completamente</strong> antes de continuar.</td>
+          </tr>
+          <tr>
+            <td class="mono">03</td>
+            <td><strong>Verificación de humedad del sustrato</strong></td>
+            <td>Higrómetro</td>
+            <td>Medir humedad del sustrato. Condición obligatoria: <strong>≤4%</strong> antes de proceder con la aplicación. Registrar medición con foto y fecha.</td>
+          </tr>
+          <tr>
+            <td class="mono">04</td>
+            <td><strong>Aplicación Sikalastic 617 CO</strong></td>
+            <td>Sikalastic 617 CO</td>
+            <td>Aplicar conforme a ficha técnica. Consumo: <strong>2,0 kg/m²</strong>. No diluir el producto con ningún tipo de solvente. No aplicar ningún producto intermedio.</td>
+          </tr>
+          <tr>
+            <td class="mono">05</td>
+            <td><strong>Secado entre capas</strong></td>
+            <td>—</td>
+            <td>Respetar los tiempos de secado entre capas indicados en la ficha técnica. Verificar condiciones ambientales: HR ≤85%, temperatura adecuada.</td>
+          </tr>
+          <tr>
+            <td class="mono">06</td>
+            <td><strong>Acabado top coat — Sikalastic 701 CO</strong></td>
+            <td>Sikalastic 701 CO</td>
+            <td>Aplicar capa final de protección Sikalastic 701 una vez el Sikalastic 617 esté totalmente seco. No diluir.</td>
+          </tr>
+          <tr>
+            <td class="mono">07</td>
+            <td><strong>Registro fotográfico y en Drive</strong></td>
+            <td>—</td>
+            <td>Documentar cada paso con fotografías fechadas. Cargar en la carpeta Drive compartida con la Comisión Técnica (ver Sección V).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-icon">⚠️</div>
+      <p><strong>Advertencias técnicas del fabricante (comunicación Sika 13/02/2026):</strong><br>
+        — <strong>Ninguno de los productos (617, 701 ni Sikajustador Uretano) debe diluirse con ningún tipo de solvente.</strong><br>
+        — <strong>No se debe aplicar ningún otro producto debajo del Sikalastic 617, ni entre capa de 617 y capa de 701.</strong> Cualquier producto intermedio puede interferir en el curado del sistema.<br>
+        — El Sikajustador Uretano es exclusivamente para limpiar herramienta y para activar capas ya curadas que requieren reparación o repinte.
+      </p>
+    </div>
+
+    <div class="callout reveal" style="background:rgba(22,163,74,.05);border-left-color:var(--status-ok);">
+      <div class="callout-icon">✅</div>
+      <p><strong>Material exactamente igual:</strong> FreshHouse adquirirá los mismos productos (Sikalastic 617 CO, Sikalastic 701 CO y Sikajustador Uretano) para realizar todas las correcciones y terminaciones. No se usarán lotes ni referencias distintas a las aplicadas originalmente.</p>
+    </div>
+  </section>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- SECCIÓN V: COMPROMISOS -->
+  <section class="section reveal" id="compromisos">
+    <div class="section-header">
+      <span class="section-num">V</span>
+      <h2 class="section-title">Compromisos Formales de FreshHouse</h2>
+    </div>
+
+    <div class="content-resumen">
+      Los siguientes compromisos son formales, verificables y condicionan el cierre contractual. Cada uno tiene un mecanismo concreto de verificación por parte de la Comisión Técnica.
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">1</div>
+      <div class="finding-body">
+        <h4>Cierre formal condicionado a obra terminada</h4>
+        <p>FreshHouse <strong>no suscribirá acta de entrega definitiva</strong> hasta que la obra esté completamente terminada, con corrección de abombamientos, terminación de zonas faltantes y verificación de funcionalidad confirmada por la Comisión Técnica.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">2</div>
+      <div class="finding-body">
+        <h4>Carpeta Drive compartida — registro en tiempo real</h4>
+        <p>Se creará y compartirá con la Comisión Técnica una <strong>carpeta Google Drive</strong> con acceso de lectura, donde se consignará el registro fotográfico y documental de cada actividad del protocolo de corrección y entrega. Se enviará el enlace de acceso por escrito.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">3</div>
+      <div class="finding-body">
+        <h4>Cronograma en MS Project</h4>
+        <p>Se enviará un cronograma formal en <strong>MS Project</strong> indicando: actividad, operario responsable, fecha de inicio y fecha de finalización estimada para cada tarea del protocolo de corrección y las zonas faltantes.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">4</div>
+      <div class="finding-body">
+        <h4>Fichas técnicas de los tres productos</h4>
+        <p>Se adjuntan en esta carta las fichas técnicas completas de los tres productos del sistema: <strong>Sikalastic 617 CO</strong> (Anexo I), <strong>Sikalastic 701 CO</strong> (Anexo II) y <strong>Sikajustador Uretano</strong> (Anexo III). Estas fichas respaldan cada paso del protocolo descrito en la Sección IV.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">5</div>
+      <div class="finding-body">
+        <h4>Registros de medición de humedad</h4>
+        <p>Los registros históricos de medición de humedad tomados durante la instalación original serán cargados en la carpeta Drive (Anexo V). Igualmente, todos los registros de humedad del proceso de corrección serán documentados y cargados conforme se ejecute el protocolo.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">6</div>
+      <div class="finding-body">
+        <h4>Seguimiento post-corrección</h4>
+        <p>FreshHouse realizará visitas de seguimiento a los apartamentos involucrados luego de la corrección, para verificar la funcionalidad del sistema impermeabilizante. Los resultados de estas visitas serán reportados a la Comisión Técnica por escrito.</p>
+      </div>
+    </div>
+
+    <div class="finding finding--ok reveal">
+      <div class="finding-num">7</div>
+      <div class="finding-body">
+        <h4>Garantía formal por escrito</h4>
+        <p>Se emitirá un documento formal de garantía de FreshHouse sobre la obra, conforme a los términos descritos en la Sección VI. Este documento formará parte del acta de entrega definitiva.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- SECCIÓN VI: GARANTÍA -->
+  <section class="section reveal" id="garantia">
+    <div class="section-header">
+      <span class="section-num">VI</span>
+      <h2 class="section-title">Garantía</h2>
+    </div>
+
+    <div class="content-resumen">
+      La garantía de FreshHouse está alineada con los parámetros de vida útil establecidos por el fabricante Sika Colombia para el sistema Sikalastic correctamente aplicado, y cubre la obra en su totalidad una vez emitida el acta de entrega a satisfacción.
+    </div>
+
+    <div class="guarantee-box reveal">
+      <h3><span class="gicon">GARANTÍA</span> FreshHouse — Sistema Sikalastic · Terrazas Edificio Atlantis</h3>
+      <div class="guarantee-grid">
+        <div class="guarantee-item">
+          <div class="gi-label">Término de garantía</div>
+          <div class="gi-value"><strong>5 a 7 años</strong> desde la fecha de entrega formal de la obra, alineado con la vida útil estimada por Sika Colombia para el sistema correctamente aplicado.</div>
+        </div>
+        <div class="guarantee-item">
+          <div class="gi-label">Alcance</div>
+          <div class="gi-value">Cubre la corrección de los abombamientos identificados, la terminación de zonas faltantes (~2 m²) y el desempeño normal del sistema impermeabilizante contra filtraciones.</div>
+        </div>
+        <div class="guarantee-item">
+          <div class="gi-label">Mantenimiento preventivo esperado</div>
+          <div class="gi-value">A los <strong>~5 años</strong>: lavado fuerte, revisión visual, reparaciones puntuales si se requieren, activación con Sikajustador Uretano y aplicación de una capa adicional de Sikalastic 701 (top coat). Este mantenimiento es responsabilidad del propietario/administración.</div>
+        </div>
+        <div class="guarantee-item">
+          <div class="gi-label">Exclusiones</div>
+          <div class="gi-value">No cubre: daños por movimiento estructural del edificio · tráfico no autorizado sobre la membrana · aplicación de productos incompatibles por terceros · daños por objetos cortantes o punzantes · ausencia del mantenimiento preventivo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- FIRMAS -->
+  <section class="signatures-section reveal">
+    <p class="sig-intro">
+      En constancia de lo anterior, se suscribe la presente carta respuesta en la ciudad de Armenia, Quindío, en el mes de mayo de 2026. Las partes que suscriben declaran haber leído y comprendido el contenido de este documento y los compromisos que en él se establecen.
+    </p>
+    <div class="sig-grid">
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-name placeholder">[NOMBRE RESPONSABLE TÉCNICO]</div>
+        <div class="sig-role">Representante Técnico · FreshHouse</div>
+        <div class="sig-role" style="margin-top:.2rem;">Ref. PNK-001-2025</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-name placeholder">[NOMBRE ADMINISTRADOR / COMISIÓN TÉCNICA]</div>
+        <div class="sig-role">Recibido conforme · Edificio Atlantis</div>
+        <div class="sig-role" style="margin-top:.2rem;">Armenia, Quindío</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shimmer reveal"></div>
+
+  <!-- ANEXOS -->
+  <section class="section reveal" id="anexos">
+    <div class="section-header">
+      <span class="section-num">ANEXOS</span>
+      <h2 class="section-title">Relación de Documentos Adjuntos</h2>
+    </div>
+
+    <div class="content-resumen">
+      Los siguientes documentos forman parte integral de esta carta respuesta. Su recepción debe ser confirmada por la Comisión Técnica.
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Ref.</th>
+            <th>Documento</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="annex-num">ANX-I</td>
+            <td><strong>Ficha técnica Sikalastic 617 CO</strong></td>
+            <td>Documento técnico fabricante</td>
+            <td><span style="background:rgba(22,163,74,.1);color:var(--status-ok);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">ADJUNTO</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-II</td>
+            <td><strong>Ficha técnica Sikalastic 701 CO</strong></td>
+            <td>Documento técnico fabricante</td>
+            <td><span style="background:rgba(22,163,74,.1);color:var(--status-ok);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">ADJUNTO</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-III</td>
+            <td><strong>Ficha técnica Sikajustador Uretano</strong></td>
+            <td>Documento técnico fabricante</td>
+            <td><span style="background:rgba(234,88,12,.1);color:var(--status-warning);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">PENDIENTE</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-IV</td>
+            <td><strong>Protocolo de corrección</strong> (Sección IV de esta carta)</td>
+            <td>Protocolo técnico</td>
+            <td><span style="background:rgba(22,163,74,.1);color:var(--status-ok);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">INCLUIDO</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-V</td>
+            <td><strong>Registros de medición de humedad</strong> — instalación original</td>
+            <td>Registro de campo</td>
+            <td><span style="background:rgba(234,88,12,.1);color:var(--status-warning);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">A CARGAR EN DRIVE</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-VI</td>
+            <td><strong>Cronograma MS Project</strong> — corrección y entrega final</td>
+            <td>Cronograma</td>
+            <td><span style="background:rgba(234,88,12,.1);color:var(--status-warning);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">A ENVIAR</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-VII</td>
+            <td><strong>Documento formal de garantía FreshHouse</strong></td>
+            <td>Garantía</td>
+            <td><span style="background:rgba(234,88,12,.1);color:var(--status-warning);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">A EMITIR EN ENTREGA</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-VIII</td>
+            <td><strong>Comunicación escrita representante Sika Colombia</strong> — email 13/02/2026</td>
+            <td>Comunicación fabricante</td>
+            <td><span style="background:rgba(22,163,74,.1);color:var(--status-ok);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">ADJUNTO</span></td>
+          </tr>
+          <tr>
+            <td class="annex-num">ANX-IX</td>
+            <td><strong>Enlace carpeta Google Drive</strong> — registro fotográfico de proceso de corrección</td>
+            <td>Carpeta compartida</td>
+            <td><span style="background:rgba(234,88,12,.1);color:var(--status-warning);font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.12rem .45rem;border-radius:4px;">A COMPARTIR</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="report-footer">
+  <div class="footer-brand">Fresh<span>House</span></div>
+  <div class="footer-meta">
+    CARTA-RESP · PNK-001-2025 · MAYO 2026<br>
+    Terrazas Edificio Atlantis · Armenia, Quindío
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, 60 * (i % 4));
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
