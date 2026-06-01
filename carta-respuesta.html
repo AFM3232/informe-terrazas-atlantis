@@ -821,7 +821,7 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   .reveal { opacity: 1 !important; transform: none !important; }
 }
 </style>
-<meta name="fhe-ts" content="1780341590426"></head>
+<meta name="fhe-ts" content="1780341609043"></head>
 <body class="">
 
 <!-- Blobs -->
@@ -1003,11 +1003,7 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
             <td class="mono">90%</td>
             <td><span style="background:rgba(234,88,12,.1);color:var(--status-warning);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">PENDIENTE ENTREGA</span></td>
           </tr>
-          <tr class="">
-            <td><strong>Estado de entrega</strong></td>
-            <td>Obra no entregada formalmente. Zonas faltantes (~2 m²) pendientes de terminar.</td>
-            <td><span style="background:rgba(249,115,22,.1);color:var(--fh-orange-dark);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.15rem .5rem;border-radius:4px;letter-spacing:.05em;">PENDIENTE</span></td>
-          </tr>
+          
           <tr class="">
             <td><strong>Materiales</strong></td>
             <td>Todos los materiales del sistema (Sikalastic 612, 617, 701 y Sikajustador Uretano) fueron adquiridos íntegramente por Freshouse.</td>
@@ -1494,9 +1490,9 @@ body.fhe-editing [contenteditable="true"]:focus {
 @media print { #fhe-toggle, #fhe-bar, #fhe-modal-bg { display: none !important; } }
 </style>
 
-<button id="fhe-toggle" class="">✏️ Editar</button>
+<button id="fhe-toggle" class="active">✕ Salir</button>
 
-<div id="fhe-bar" class="">
+<div id="fhe-bar" class="visible">
   <button id="fhe-btn-cfg">⚙️ Config</button>
   <span id="fhe-status">⏳ Guardando…</span>
   <button id="fhe-btn-cancel">✕ Cancelar</button>
