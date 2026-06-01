@@ -857,7 +857,7 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
 <header class="cover">
   <div class="cover-inner">
     <img src="logo-freshouse.png" alt="Freshouse" style="height:52px;width:auto;margin-bottom:1.8rem;display:block;filter:brightness(0) invert(1);">
-    <div class="cover-eyebrow">Respuesta Formal — Informe Técnico Pericial</div>
+    <div class="cover-eyebrow">Respuesta Formal — Hallazgos Comisión Técnica</div>
     <h1 class="cover-title">Carta Respuesta<br><span>Terrazas Edificio Atlantis</span></h1>
     <p class="cover-subtitle">Freshouse responde formalmente a los hallazgos del experto técnico<br>contratado por la Comisión Técnica del Edificio Atlantis</p>
 
@@ -883,7 +883,7 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
       </div>
       <div class="cover-subject-block">
         <div class="cover-lf-label">Asunto</div>
-        <div class="cover-subject-text">Respuesta formal al informe técnico pericial sobre impermeabilización de terrazas — Protocolo de solución y compromisos de Freshouse</div>
+        <div class="cover-subject-text">Freshouse genera respuesta a los hallazgos de la Comisión Técnica y Administración del Edificio Atlantis — Protocolo de solución y compromisos</div>
       </div>
     </div>
 
@@ -914,7 +914,7 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   <!-- INTRO PARAGRAPH -->
   <div class="reveal" style="margin-bottom:2.5rem;">
     <p style="font-family:'Inter',sans-serif;font-size:.88rem;color:var(--text-secondary);line-height:1.9;">
-      En atención a la reunión sostenida con la Comisión Técnica del Edificio Atlantis y en respuesta al informe técnico pericial elaborado por el experto contratado por dicha comisión, la empresa <strong style="color:var(--text-primary)">Freshouse</strong> presenta a continuación su posición formal, la respuesta técnica a cada uno de los hallazgos identificados, el protocolo de solución avalado por el fabricante <strong style="color:var(--text-primary)">Sika Colombia</strong>, y los compromisos concretos que garantizan la correcta terminación y entrega de la obra.
+      En atención a la reunión sostenida con la Comisión Técnica y la Administración del Edificio Atlantis, la empresa <strong style="color:var(--text-primary)">Freshouse S.A.S</strong> presenta a continuación su respuesta formal a los hallazgos identificados, el protocolo de solución avalado por el fabricante <strong style="color:var(--text-primary)">Sika Colombia</strong>, y los compromisos concretos que garantizan la correcta terminación y entrega de la obra.
     </p>
   </div>
 
@@ -924,18 +924,18 @@ tr.row-total td:first-child { color: var(--fh-orange-dark); }
   <section class="section reveal" id="posicion">
     <div class="section-header">
       <span class="section-num">I</span>
-      <h2 class="section-title">Posición y Compromiso Formal de Freshouse</h2>
+      <h2 class="section-title">Compromiso Formal de Freshouse S.A.S</h2>
     </div>
 
     <div class="content-resumen">
-      Freshouse acoge el informe técnico pericial como un insumo técnico válido y constructivo. Esta carta constituye la respuesta formal acordada en reunión y refleja el compromiso de la empresa con la calidad, la transparencia documental y la correcta terminación de la obra contratada.
+      Freshouse S.A.S acoge el informe técnico como un insumo válido y constructivo. Esta carta constituye la respuesta formal acordada en reunión y refleja el compromiso de la empresa con la calidad, la transparencia documental y la correcta terminación de la obra contratada.
     </div>
 
     <div class="finding finding--info reveal">
       <div class="finding-num">1</div>
       <div class="finding-body">
-        <h4>Reconocimiento del informe pericial</h4>
-        <p>Freshouse reconoce y valora el informe técnico elaborado por el experto designado por la Comisión Técnica. Los hallazgos señalados son tomados como insumo técnico formal para la culminación y entrega definitiva de la obra.</p>
+        <h4>Reconocimiento del informe técnico</h4>
+        <p>Freshouse S.A.S reconoce y valora el informe técnico elaborado a solicitud de la Comisión Técnica. Los hallazgos señalados son tomados como insumo formal para la culminación y entrega definitiva de la obra.</p>
       </div>
     </div>
 
@@ -1419,6 +1419,217 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- ═══════════════════════════════════════════
+     EDITOR INLINE — FreshHouse Pages Editor
+═══════════════════════════════════════════ -->
+<style>
+#fhe-toggle {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9998;
+  background: #1A52A8; color: #fff; border: none; border-radius: 10px;
+  padding: .55rem 1rem; font-family: 'Inter', sans-serif; font-size: .75rem;
+  font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(26,82,168,.4);
+  display: flex; align-items: center; gap: .4rem; transition: background .2s;
+}
+#fhe-toggle:hover { background: #2563EB; }
+#fhe-toggle.active { background: #DC2626; }
+
+#fhe-bar {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  z-index: 9999; display: none; align-items: center; gap: .6rem;
+  background: #0A1628; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: .55rem .9rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,.45);
+  font-family: 'Inter', sans-serif; font-size: .78rem;
+}
+#fhe-bar.visible { display: flex; }
+#fhe-bar button {
+  border: none; border-radius: 8px; padding: .38rem .85rem;
+  font-family: inherit; font-size: .75rem; font-weight: 600; cursor: pointer;
+}
+#fhe-btn-save   { background: #16a34a; color: #fff; }
+#fhe-btn-cancel { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+#fhe-btn-cfg    { background: rgba(255,255,255,.07); color: rgba(255,255,255,.55); font-size: .68rem; }
+#fhe-status     { color: rgba(255,255,255,.5); font-size: .7rem; min-width: 130px; text-align: center; }
+
+.fhe-deletable { position: relative; }
+.fhe-del-btn {
+  position: absolute; top: .35rem; right: .35rem; z-index: 20;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #DC2626; color: #fff; border: none;
+  font-size: .8rem; line-height: 1; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(220,38,38,.4);
+}
+body.fhe-editing .fhe-deletable .fhe-del-btn { display: flex; }
+body.fhe-editing .fhe-deletable { outline: 1.5px dashed rgba(37,99,235,.3); outline-offset: 2px; }
+body.fhe-editing [contenteditable="true"] {
+  outline: 1.5px solid rgba(37,99,235,.4); border-radius: 3px;
+  padding: 1px 3px; cursor: text; min-width: 10px; display: inline-block;
+}
+body.fhe-editing [contenteditable="true"]:focus {
+  outline: 2px solid #2563EB; background: rgba(37,99,235,.04);
+}
+
+#fhe-modal-bg {
+  display: none; position: fixed; inset: 0; z-index: 10000;
+  background: rgba(10,22,40,.75); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+}
+#fhe-modal-bg.open { display: flex; }
+#fhe-modal {
+  background: #fff; border-radius: 16px; padding: 2rem 2.5rem;
+  width: min(460px, 92vw); box-shadow: 0 24px 64px rgba(0,0,0,.3);
+  font-family: 'Inter', sans-serif;
+}
+#fhe-modal h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; color: #0D1B2E; margin-bottom: 1.2rem; }
+#fhe-modal label { display: block; font-size: .7rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; margin: .85rem 0 .25rem; }
+#fhe-modal input { width: 100%; border: 1.5px solid #e5e7eb; border-radius: 8px; padding: .5rem .75rem; font-size: .85rem; font-family: inherit; color: #111827; outline: none; }
+#fhe-modal input:focus { border-color: #2563EB; }
+.fhe-note { font-size: .7rem; color: #9ca3af; margin-top: .3rem; line-height: 1.5; }
+.fhe-modal-btns { display: flex; gap: .6rem; justify-content: flex-end; margin-top: 1.4rem; }
+.fhe-modal-btns button { border: none; border-radius: 8px; padding: .48rem 1.1rem; font-family: inherit; font-size: .78rem; font-weight: 600; cursor: pointer; }
+#fhe-btn-cfg-save { background: #1A52A8; color: #fff; }
+#fhe-btn-cfg-cancel { background: #f3f4f6; color: #374151; }
+
+@media print { #fhe-toggle, #fhe-bar, #fhe-modal-bg { display: none !important; } }
+</style>
+
+<button id="fhe-toggle">✏️ Editar</button>
+
+<div id="fhe-bar">
+  <button id="fhe-btn-cfg">⚙️ Config</button>
+  <span id="fhe-status">Modo edición activo</span>
+  <button id="fhe-btn-cancel">✕ Cancelar</button>
+  <button id="fhe-btn-save">💾 Guardar en Pages</button>
+</div>
+
+<div id="fhe-modal-bg">
+  <div id="fhe-modal">
+    <h3>Configuración GitHub Pages</h3>
+    <label>Usuario GitHub (owner)</label>
+    <input id="fhe-owner" type="text" placeholder="AFM3232">
+    <label>Repositorio</label>
+    <input id="fhe-repo" type="text" placeholder="informe-terrazas-atlantis">
+    <label>Ruta del archivo en el repo</label>
+    <input id="fhe-path" type="text" placeholder="carta-respuesta.html">
+    <label>Rama</label>
+    <input id="fhe-branch" type="text" value="main">
+    <label>Token de acceso GitHub</label>
+    <input id="fhe-token" type="password" placeholder="ghp_xxxxxxxxxxxx">
+    <p class="fhe-note">El token se guarda solo en tu navegador. Créalo en GitHub → Settings → Developer settings → Personal access tokens → Fine-grained, con permiso <strong>Contents: Read &amp; write</strong> en este repo.</p>
+    <div class="fhe-modal-btns">
+      <button id="fhe-btn-cfg-cancel">Cancelar</button>
+      <button id="fhe-btn-cfg-save">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const CFG = 'fhe_cfg_carta';
+  let editing = false, snapshot = null;
+
+  const TEXT_SEL = 'h1,h2,h3,h4,p,td,th,.cover-meta-value,.cover-lf-value,.cover-subject-text,.section-title,.finding-body h4,.finding-body p,.callout p,.content-resumen,.gi-value,.sig-name,.sig-role,.lh-value,.subject-text,.guarantee-box h3,.cover-title,.cover-subtitle,.cover-eyebrow,.annex-num';
+  const BLOCK_SEL = '.finding,.callout,.content-resumen,tr:not(thead tr),.sig-block,.guarantee-item,.cover-meta-item,.shimmer';
+
+  const getCfg = () => { try { return JSON.parse(localStorage.getItem(CFG)) || {}; } catch { return {}; } };
+  const setCfg = v => localStorage.setItem(CFG, JSON.stringify(v));
+  const setStatus = t => document.getElementById('fhe-status').textContent = t;
+
+  function enableEdit() {
+    editing = true;
+    snapshot = document.documentElement.innerHTML;
+    document.body.classList.add('fhe-editing');
+    document.getElementById('fhe-toggle').textContent = '✕ Salir';
+    document.getElementById('fhe-toggle').classList.add('active');
+    document.getElementById('fhe-bar').classList.add('visible');
+
+    document.querySelectorAll(TEXT_SEL).forEach(el => {
+      if (!el.closest('#fhe-bar,#fhe-toggle,#fhe-modal-bg,.fhe-del-btn,.print-btn'))
+        el.contentEditable = 'true';
+    });
+
+    document.querySelectorAll(BLOCK_SEL).forEach(el => {
+      if (el.closest('#fhe-bar,#fhe-toggle,#fhe-modal-bg') || el.querySelector('.fhe-del-btn')) return;
+      el.classList.add('fhe-deletable');
+      const b = document.createElement('button');
+      b.className = 'fhe-del-btn'; b.title = 'Eliminar'; b.innerHTML = '×';
+      b.onclick = e => { e.stopPropagation(); if (confirm('¿Eliminar este bloque?')) el.remove(); };
+      el.appendChild(b);
+    });
+  }
+
+  function disableEdit(restore) {
+    editing = false;
+    document.body.classList.remove('fhe-editing');
+    document.getElementById('fhe-toggle').textContent = '✏️ Editar';
+    document.getElementById('fhe-toggle').classList.remove('active');
+    document.getElementById('fhe-bar').classList.remove('visible');
+    if (restore && snapshot) { document.documentElement.innerHTML = snapshot; init(); return; }
+    document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+    document.querySelectorAll('.fhe-del-btn').forEach(b => b.remove());
+    document.querySelectorAll('.fhe-deletable').forEach(el => el.classList.remove('fhe-deletable'));
+  }
+
+  function cleanHTML() {
+    const c = document.documentElement.cloneNode(true);
+    c.querySelectorAll('#fhe-toggle,#fhe-bar,#fhe-modal-bg').forEach(el => el.remove());
+    c.querySelectorAll('style').forEach(s => { if (s.textContent.includes('fhe-toggle')) s.remove(); });
+    c.querySelectorAll('script').forEach(s => { if (s.textContent.includes('fhe_cfg_carta')) s.remove(); });
+    c.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+    c.querySelectorAll('.fhe-del-btn').forEach(b => b.remove());
+    c.querySelectorAll('.fhe-deletable').forEach(el => el.classList.remove('fhe-deletable'));
+    c.querySelectorAll('.fhe-editing').forEach(el => el.classList.remove('fhe-editing'));
+    return '<!DOCTYPE html>\n' + c.outerHTML;
+  }
+
+  async function save() {
+    const cfg = getCfg();
+    if (!cfg.token || !cfg.owner || !cfg.repo || !cfg.path) { openModal(); setStatus('⚠ Configura primero'); return; }
+    setStatus('⏳ Guardando…');
+    const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}`;
+    const headers = { Authorization: `Bearer ${cfg.token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' };
+    try {
+      const { sha } = await (await fetch(url, { headers })).json();
+      const res = await fetch(url, {
+        method: 'PUT', headers,
+        body: JSON.stringify({
+          message: `Edición inline — ${new Date().toLocaleString('es-CO')}`,
+          content: btoa(unescape(encodeURIComponent(cleanHTML()))),
+          sha, branch: cfg.branch || 'main'
+        })
+      });
+      if (!res.ok) throw new Error((await res.json()).message);
+      setStatus('✅ Guardado'); setTimeout(() => setStatus('Modo edición activo'), 3000);
+    } catch (e) { setStatus('❌ ' + e.message); }
+  }
+
+  function openModal() {
+    const c = getCfg();
+    ['owner','repo','path','branch','token'].forEach(k => {
+      document.getElementById('fhe-' + k).value = c[k] || (k === 'branch' ? 'main' : '');
+    });
+    document.getElementById('fhe-modal-bg').classList.add('open');
+  }
+
+  function init() {
+    document.getElementById('fhe-toggle').onclick = () => editing ? disableEdit(true) : enableEdit();
+    document.getElementById('fhe-btn-cancel').onclick = () => disableEdit(true);
+    document.getElementById('fhe-btn-save').onclick = save;
+    document.getElementById('fhe-btn-cfg').onclick = openModal;
+    document.getElementById('fhe-btn-cfg-cancel').onclick = () => document.getElementById('fhe-modal-bg').classList.remove('open');
+    document.getElementById('fhe-btn-cfg-save').onclick = () => {
+      setCfg({ owner: document.getElementById('fhe-owner').value.trim(), repo: document.getElementById('fhe-repo').value.trim(), path: document.getElementById('fhe-path').value.trim(), branch: document.getElementById('fhe-branch').value.trim() || 'main', token: document.getElementById('fhe-token').value.trim() });
+      document.getElementById('fhe-modal-bg').classList.remove('open');
+      setStatus('✅ Config guardada');
+    };
+    document.getElementById('fhe-modal-bg').onclick = e => { if (e.target.id === 'fhe-modal-bg') e.target.classList.remove('open'); };
+  }
+
+  init();
+})();
 </script>
 </body>
 </html>
