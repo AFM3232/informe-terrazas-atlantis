@@ -1618,8 +1618,13 @@ body.fhe-editing [contenteditable="true"]:focus {
         const err = await putRes.json();
         throw new Error(err.message || 'Error ' + putRes.status);
       }
-      setStatus('✅ Guardado en Pages');
-      setTimeout(() => setStatus('Modo edición activo'), 4000);
+      setStatus('✅ Guardado — recargando…');
+      /* Forzar carga de la versión nueva ignorando caché */
+      setTimeout(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('v', Date.now());
+        window.location.replace(url.toString());
+      }, 1500);
     } catch (e) {
       console.error('[FHE] Error al guardar:', e);
       setStatus('❌ ' + e.message);
