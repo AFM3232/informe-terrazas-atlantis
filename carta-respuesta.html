@@ -1509,15 +1509,15 @@ body.fhe-editing [contenteditable="true"]:focus {
   <div id="fhe-modal">
     <h3>Configuración GitHub Pages</h3>
     <label>Usuario GitHub (owner)</label>
-    <input id="fhe-owner" type="text" placeholder="AFM3232">
+    <input id="fhe-owner" type="text" value="AFM3232">
     <label>Repositorio</label>
-    <input id="fhe-repo" type="text" placeholder="informe-terrazas-atlantis">
+    <input id="fhe-repo" type="text" value="informe-terrazas-atlantis">
     <label>Ruta del archivo en el repo</label>
-    <input id="fhe-path" type="text" placeholder="carta-respuesta.html">
+    <input id="fhe-path" type="text" value="carta-respuesta.html">
     <label>Rama</label>
     <input id="fhe-branch" type="text" value="main">
     <label>Token de acceso GitHub</label>
-    <input id="fhe-token" type="password" placeholder="ghp_xxxxxxxxxxxx">
+    <input id="fhe-token" type="password" placeholder="Pega aquí tu token">
     <p class="fhe-note">El token se guarda solo en tu navegador. Créalo en GitHub → Settings → Developer settings → Personal access tokens → Fine-grained, con permiso <strong>Contents: Read &amp; write</strong> en este repo.</p>
     <div class="fhe-modal-btns">
       <button id="fhe-btn-cfg-cancel">Cancelar</button>
@@ -1585,25 +1585,46 @@ body.fhe-editing [contenteditable="true"]:focus {
     return '<!DOCTYPE html>\n' + c.outerHTML;
   }
 
+  /* Base64 seguro para UTF-8 (tildes, ñ, etc.) en archivos grandes */
+  function toBase64(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = '';
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+
   async function save() {
     const cfg = getCfg();
-    if (!cfg.token || !cfg.owner || !cfg.repo || !cfg.path) { openModal(); setStatus('⚠ Configura primero'); return; }
+    if (!cfg.token) { openModal(); setStatus('⚠ Falta el token'); return; }
     setStatus('⏳ Guardando…');
     const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}`;
     const headers = { Authorization: `Bearer ${cfg.token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' };
     try {
-      const { sha } = await (await fetch(url, { headers })).json();
-      const res = await fetch(url, {
+      const getRes = await fetch(url, { headers });
+      if (!getRes.ok) throw new Error('No se pudo leer el archivo (' + getRes.status + ')');
+      const { sha } = await getRes.json();
+
+      const html = cleanHTML();
+      const encoded = toBase64(html);
+
+      const putRes = await fetch(url, {
         method: 'PUT', headers,
         body: JSON.stringify({
           message: `Edición inline — ${new Date().toLocaleString('es-CO')}`,
-          content: btoa(unescape(encodeURIComponent(cleanHTML()))),
-          sha, branch: cfg.branch || 'main'
+          content: encoded, sha, branch: cfg.branch || 'main'
         })
       });
-      if (!res.ok) throw new Error((await res.json()).message);
-      setStatus('✅ Guardado'); setTimeout(() => setStatus('Modo edición activo'), 3000);
-    } catch (e) { setStatus('❌ ' + e.message); }
+      if (!putRes.ok) {
+        const err = await putRes.json();
+        throw new Error(err.message || 'Error ' + putRes.status);
+      }
+      setStatus('✅ Guardado en Pages');
+      setTimeout(() => setStatus('Modo edición activo'), 4000);
+    } catch (e) {
+      console.error('[FHE] Error al guardar:', e);
+      setStatus('❌ ' + e.message);
+      alert('Error al guardar: ' + e.message);
+    }
   }
 
   function openModal() {
